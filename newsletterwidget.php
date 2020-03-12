@@ -23,10 +23,10 @@ class Gd_Newsletter_Widget extends WP_Widget
                         <input id="gd_newsletter_email" name="gd_newsletter_email" type="email" placeholder="Votre courriel" />
                     </p>
                     <!-- Si besoin, bouton de lien vers les newsletter passées -->
-                    <div class="buttonsNewsletter" >
+                    <!-- <div class="buttonsNewsletter" >
                         <input type="submit" class="buttonNewsletter" value="Je m'abonne" id="submitNewsLetter"/>
-                        <a href="#"><!-- href avec le lien vers la page contenant les anciennes newsletter --><input type="button" value="InfoLettres passées" class="buttonNewsletter" /></a>
-                    </div>
+                        <a href="#"> <input type="button" value="InfoLettres passées" class="buttonNewsletter" /></a>
+                    </div>-->
 
                 </form>
             </div>
