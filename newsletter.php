@@ -36,15 +36,27 @@ class Gd_Newsletter
     ////////////////////////////// insertion bdd de l'info récupérée par le formulaire de la newsletter
     public function save_email()
     {
+        $errors=[];
+        $success=[];
         $safe= array_map('trim', array_map('strip_tags', $_POST));
         if (isset($safe['gd_newsletter_email']) && !empty($safe['gd_newsletter_email'])) {
             global $wpdb;
             $email = sanitize_email($safe['gd_newsletter_email']);
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $row = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}gd_newsletter_email WHERE email = %s", $email));
+                if (is_null($row)) {
+                    $wpdb->insert("{$wpdb->prefix}gd_newsletter_email", array('email' => $email));
+                    echo ("Votre inscription est validée.");
+                }
+                else{
+                    echo ("Cette adresse courriel est déjà enregistrée.");
+                }
 
-            $row = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}gd_newsletter_email WHERE email = %s", $email));
-            if (is_null($row)) {
-                $wpdb->insert("{$wpdb->prefix}gd_newsletter_email", array('email' => $email));
+
+            } else {
+                echo("Cette adresse courriel est invalide.");
             }
+
         }
     }
 
